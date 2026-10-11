@@ -1,6 +1,6 @@
 # Complete API Test Flow
 
-## 0. Helpers & Tokens
+## Helpers & Tokens
 ```bash
 BASE=http://localhost:8080
 
