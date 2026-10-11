@@ -26,9 +26,50 @@ Default Admin Credentials: admin / Nitin7880
 Health Endpoint: GET http://localhost:8080/actuator/health
 API Test Flow: Refer to docs/TEST_FLOW.md for complete curl/bash execution.
 3. Data Model (ER)
-hub
-Diagram
-Mermaid diagram
+erDiagram
+  APP_USER ||--o{ BOOKING : requests
+  TRIP ||--o{ BOOKING : contains
+  TRIP ||--o{ COST_CENTRE_QUOTA : constrains
+  APP_USER ||--o{ NOTIFICATION : receives
+
+  TRIP {
+    long id PK
+    string routeName
+    instant departureTime
+    instant checkInCutoff
+    int capacity
+  }
+  BOOKING {
+    long id PK
+    long tripId FK
+    long userId FK
+    string costCentre
+    string tier
+    int seats
+    string status
+    int waitlistPosition
+    bool checkedIn
+  }
+  COST_CENTRE_QUOTA {
+    long id PK
+    long tripId FK
+    string costCentre
+    int seatQuota
+  }
+  APP_USER {
+    long id PK
+    string username
+    string role
+    string costCentre
+    string tier
+    string phone
+  }
+  NOTIFICATION {
+    long id PK
+    long userId
+    string message
+    string status
+  }
 4. Core Business Logic
 Fair Queue Ordering: Waitlist follows strict FIFO order based on booking request timestamp. If two requests arrive in the exact same second, priority breaks down by Employee Tier (PLATINUM > GOLD > SILVER > STANDARD).
 Cost-Centre Quota Check: Bookings require both available shuttle seats and remaining departmental quota. If a department cap is reached, new requests enter the waitlist even if physical bus seats are free.
