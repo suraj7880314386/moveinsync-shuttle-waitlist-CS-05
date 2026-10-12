@@ -2,6 +2,8 @@
 
 Backend for MoveInSync Case Study 5, built with Java 17 and Spring Boot 3.5.
 
+Demo Video: https://drive.google.com/file/d/1K-kGLPxLdw3nVRmPbcwaA_nmIjzpIWxX/view?usp=sharing
+
 An office shuttle has a fixed number of seats. Once it is full, people go on a waitlist. When someone cancels (or doesn't show up), the freed seat goes to the right waitlisted person, without ever seating two people on the same seat. Groups and per-cost-centre quotas make the "who is next" question harder than plain FIFO, and most of this project is about getting that part right.
 
 ## Running it
